@@ -1,8 +1,7 @@
-import Message from "../model/message";
-import Messages from "../models/Message";
-import User from "../models/User"
-import cloudinary from "../lib/cloudinary";
-import { io,userSocketMap } from "../server"; 
+import Message from "../model/message.js";
+import User from "../model/User.js"
+import cloudinary from "../lib/cloudinary.js";
+import { io,userSocketMap } from "../server.js"; 
 
 export const getUsersForSideBar=async(req,res)=>{
     try{
@@ -24,7 +23,7 @@ export const getUsersForSideBar=async(req,res)=>{
             unseenMessages
         })
     }catch(error){
-        console.log(error.mesage);
+        console.log(error.message);
         res.json({
             success:false,
             message:error.message
@@ -46,7 +45,7 @@ export const getMessage=async(req,res)=>{
         })
         await Message.updateMany({senderId:selectedUserId, receiverId:myId},{seen:true});
         res.json({
-            succes:true,
+            success:true,
             message
         })
 
@@ -70,7 +69,7 @@ export const markMessageSeen=async(req,res)=>{
     catch(error){
         console.log(error.message);
         res.json({
-            succes:false,
+            success:false,
             message:error.message
         })
     }
@@ -95,11 +94,11 @@ export const sendMessage=async(req,res)=>{
         })
         const receiverSocketId=userSocketMap[receiverId];
         if(receiverSocketId){
-            io.to(receiverSocketId).emit("New message", newMessage);
+            io.to(receiverSocketId).emit("newMessage", newMessage);
         }
 
         res.json({
-            succes:true,
+            success:true,
             newMessage
         })
     }catch(error){
