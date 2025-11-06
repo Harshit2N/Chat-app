@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import assets, { messagesDummyData } from '../assets/assets'
 import { formatMessageTime } from '../lib/utils'
-import { ChatContext } from '../../context/ChatContext'
-import { AuthContext } from '../../context/AuthContext'
+import { ChatContext } from '../../context/chatContext'
+import { AuthContext } from '../../context/authContext'
 import toast from 'react-hot-toast'
 
 const ChatContainer = () => {
@@ -23,7 +23,6 @@ const ChatContainer = () => {
         await sendMessage({text: input.trim()});
         setInput("")
     }
-
     // Handle sending an image
     const handleSendImage = async (e) =>{
         const file = e.target.files[0];
@@ -99,8 +98,7 @@ const ChatContainer = () => {
     </div>
   ) : (
     <div className='flex flex-col items-center justify-center gap-2 text-gray-500 bg-white/10 max-md:hidden'>
-        <img src={assets.logo_icon} className='max-w-16' alt="" />
-        <p className='text-lg font-medium text-white'>Chat anytime, anywhere</p>
+        Start Chatting now
     </div>
   )
 }
