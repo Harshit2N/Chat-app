@@ -1,0 +1,25 @@
+services:
+  mongodb:
+    image: mongo:8
+    container_name: mongodb
+    ports:
+    - "27017:27017"
+  server:
+    build: ./server
+    container_name: server
+    ports:
+    - "5000:5000"
+    env_file:
+      - ./server/.env
+    depends_on:
+      - mongodb
+  client:
+    build: ./client
+    container_name: client
+    ports:
+    - "5173:5173"
+    env_file:
+      - ./client/.env
+    depends_on:
+      - server
+
