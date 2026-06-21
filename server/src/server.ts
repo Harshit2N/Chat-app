@@ -17,11 +17,11 @@ export const io = new Server(server, {
 })
 
 // Store online users
-export const userSocketMap = {}; // { userId: socketId }
+export const userSocketMap: Record<string, string> = {}; // { userId: socketId }
 
 // Socket.io connection handler
 io.on("connection", (socket)=>{
-    const userId = socket.handshake.query.userId;
+    const userId = socket.handshake.query.userId as string;
     console.log("User Connected", userId);
 
     if(userId) userSocketMap[userId] = socket.id;

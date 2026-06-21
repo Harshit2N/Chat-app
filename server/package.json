@@ -2,10 +2,12 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "dist/server.js",
   "scripts": {
-    "server": "nodemon server.js",
-    "start": "node server.js"
+    "build": "tsc",
+    "dev": "NODE_OPTIONS=--loader=ts-node/esm node src/server.ts",
+    "start": "node dist/server.js",
+    "dev-watch": "nodemon --exec NODE_OPTIONS=--loader=ts-node/esm node src/server.ts"
   },
   "type": "module",
   "keywords": [],
@@ -19,7 +21,19 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.14.1",
-    "nodemon": "^3.1.10",
     "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^26.0.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@types/socket.io": "^3.0.1",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
   }
 }
