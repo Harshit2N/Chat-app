@@ -7,7 +7,11 @@ import {Toaster} from "react-hot-toast"
 import { AuthContext } from '../context/authContext'
 
 const App = () => {
-  const { authUser } = useContext(AuthContext)
+  const authContext = useContext(AuthContext);
+  if (!authContext) {
+    throw new Error('App must be used within AuthProvider');
+  }
+  const { authUser } = authContext;
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-purple-950">
       <Toaster/>
