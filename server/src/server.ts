@@ -41,7 +41,10 @@ io.on("connection", (socket)=>{
 
 // Middleware setup
 app.use(express.json({limit: "4mb"}));
-app.use(cors());
+app.use(cors({
+    origin: "https://chat-ghx5byhfm-harshitsinghshakya23-8383s-projects.vercel.app",
+    credentials: true
+}));
 
 
 // Routes setup
@@ -53,10 +56,10 @@ app.use("/api/messages", messageRouter)
 // Connect to MongoDB
 await connectDB();
 
-if(process.env.NODE_ENV !== "production"){
-    const PORT = process.env.PORT || 5000;
-    server.listen(PORT, ()=> console.log("Server is running on PORT: " + PORT));
-}
+
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, ()=> console.log("Server is running on PORT: " + PORT));
+
 
 // Export server for Vervel
 export default server;
