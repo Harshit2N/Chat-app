@@ -69,13 +69,21 @@ export const updateProfile = async (req, res)=>{
         if(!profilePic){
             updatedUser = await User.findByIdAndUpdate(userId, {bio, fullName}, {new: true});
         } else{
-            const upload = await cloudinary.uploader.upload(profilePic);
+            try {
+                const upload = await cloudinary.uploader.upload(profilePic, {
+                    resource_type: "auto",
+                    folder: "chat-app",
+                });
 
-            updatedUser = await User.findByIdAndUpdate(userId, {profilePic: upload.secure_url, bio, fullName}, {new: true});
+                updatedUser = await User.findByIdAndUpdate(userId, {profilePic: upload.secure_url, bio, fullName}, {new: true});
+            } catch (cloudError: any) {
+                console.log("Cloudinary Error:", cloudError);
+                return res.json({success: false, message: `Image upload failed: ${cloudError.message}`});
+            }
         }
         res.json({success: true, user: updatedUser})
-    } catch (error) {
-        console.log(error.message);
+    } catch (error: any) {
+        console.log("Profile Update Error:", error.message);
         res.json({success: false, message: error.message})
     }
 }
