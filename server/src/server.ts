@@ -11,10 +11,14 @@ import { Server } from "socket.io";
 const app = express();
 const server = http.createServer(app)
 
+const allowedOrigins=[
+    "https://chat-ghx5byhfm-harshitsinghshakya23-8383s-projects.vercel.app",
+    "https://chat-e5m4qwbl3-harshitsinghshakya23-8383s-projects.vercel.app/login"
+]
 // Initialize socket.io server
 export const io = new Server(server, {
     cors: {
-        origin: "https://chat-ghx5byhfm-harshitsinghshakya23-8383s-projects.vercel.app",
+        origin: allowedOrigins,
         credentials: true
     }
 });
@@ -42,7 +46,7 @@ io.on("connection", (socket)=>{
 // Middleware setup
 app.use(express.json({limit: "4mb"}));
 app.use(cors({
-    origin: "https://chat-ghx5byhfm-harshitsinghshakya23-8383s-projects.vercel.app",
+    origin: allowedOrigins,
     credentials: true
 }));
 
