@@ -12,8 +12,8 @@ const app = express();
 const server = http.createServer(app)
 
 const allowedOrigins=[
-    "https://chat-ghx5byhfm-harshitsinghshakya23-8383s-projects.vercel.app",
-    "https://chat-e5m4qwbl3-harshitsinghshakya23-8383s-projects.vercel.app"
+    "http://localhost:5173",
+    "https://chat-app-seven-mu-58.vercel.app"
 ]
 // Initialize socket.io server
 export const io = new Server(server, {
