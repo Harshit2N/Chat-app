@@ -20,15 +20,6 @@ A full-stack real-time messaging application built with the MERN stack. Users ca
 <img width="1440" height="900" alt="Screenshot 2026-06-26 at 1 39 24 PM" src="https://github.com/user-attachments/assets/e02ce406-6203-4169-80d9-19be72ab8a15" />
 <img width="1440" height="900" alt="Screenshot 2026-06-26 at 1 39 32 PM" src="https://github.com/user-attachments/assets/7d5e78c3-d05d-40fc-af3a-61d86a53ef60" />
 
-```md
-![Chat App Preview](./docs/screenshots/preview.png)
-```
-
-**Suggested captures:**
-- Home screen with sidebar, active chat, and right profile panel
-- Login / sign-up flow
-- Real-time message with online status indicator
-
 ---
 
 ## Features
